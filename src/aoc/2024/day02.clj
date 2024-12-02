@@ -2,7 +2,7 @@
   (:require [clojure.string :as str]
             [clojure.java.io :as io]))
 
-(defn input []
+(defn parse-readings []
   (->> (str/split-lines (slurp (io/resource "day02")))
        (mapv #(mapv parse-long (str/split % #"\s+")))))
 
@@ -23,12 +23,12 @@
   (or (safe? nums)
       (some safe? (possible-sequences nums))))
 
-(defn part-1 [input]
-  (count (filter safe? input)))
+(defn part-1 [readings]
+  (count (filter safe? readings)))
 
-(defn part-2 [input]
-  (count (filter dampened-safe? input)))
+(defn part-2 [readings]
+  (count (filter dampened-safe? readings)))
 
 (comment
-  (part-1 (input))
-  (part-2 (input)))
+  (part-1 (parse-readings))
+  (part-2 (parse-readings)))
